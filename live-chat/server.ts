@@ -5,8 +5,8 @@ import { fileURLToPath } from 'url';
 import { WebSocketServer, WebSocket } from 'ws';
 import { createServer as createViteServer } from 'vite';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Render বা CommonJS বিল্ডে ক্র্যাশ এড়ানোর জন্য নিরাপদ ডিরেক্টরি পাথ সেটআপ
+const projectRoot = process.cwd();
 
 interface User {
   id: string;
@@ -98,7 +98,8 @@ let adsConfig: AdsConfig = {
 async function startServer() {
   const app = express();
   const server = http.createServer(app);
-  const PORT = 3000;
+  // Render-এর দেওয়া PORT ব্যবহারের ব্যবস্থা (না থাকলে ডিফল্ট ৩০০০)
+  const PORT = process.env.PORT || 3000;
 
   // Set up WebSocket server
   const wss = new WebSocketServer({ noServer: true });
@@ -524,14 +525,16 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), 'dist');
+    // এখানে __dirname এর পরিবর্তে নিরাপদ `projectRoot` ব্যবহার করা হয়েছে
+    const distPath = path.join(projectRoot, 'dist');
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }
 
-  server.listen(PORT, '0.0.0.0', () => {
+  // Render এনভায়রনমেন্টে ০.০.০.০ এ লিসেন করা সবচেয়ে নিরাপদ
+  server.listen(Number(PORT), '0.0.0.0', () => {
     console.log(`Live Chat full-stack server running on http://0.0.0.0:${PORT}`);
   });
 }
