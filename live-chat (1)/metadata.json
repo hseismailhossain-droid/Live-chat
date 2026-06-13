@@ -1,6 +1,0 @@
-{
-  "name": "Live Chat",
-  "description": "একটি সহজ লাইভ চ্যাটিং অ্যাপ্লিকেশন যেখানে ব্যবহারকারীরা নাম দিয়ে লগইন করতে পারেন এবং ১-টু-১ চ্যাট করতে পারেন।",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
