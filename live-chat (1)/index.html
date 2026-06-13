@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>লাইভ চ্যাটরুম - রিয়েলটাইম কথোপকথন</title>
+    <!-- SEO and Discovery Meta Tags -->
+    <meta name="description" content="একটি আধুনিক এবং সুরক্ষিত রিয়েলটাইম কথোপকথন চ্যাটরুম। ওয়ান-টু-ওয়ান চ্যাটিং, ইনস্ট্যান্ট নোটিফিকেশন সহ চমৎকার কথোপকথন উপভোগ করুন।" />
+    <meta name="keywords" content="চ্যাটরুম, লাইভ চ্যাট, রিয়েলটাইম মেসেজিং, চ্যাটিং অ্যাপ, bangla chat, live chatroom, real-time message" />
+    <meta name="author" content="Ismail" />
+    
+    <!-- Google Search Console HTML Meta Tag Verification (পাবলিশ করার পর 'content' এর মান পরিবর্তন করুন) -->
+    <meta name="google-site-verification" content="YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE_HERE" />
+
+    <!-- Open Graph (Facebook / Messenger / WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="লাইভ চ্যাটরুম - রিয়েলটাইম কথোপকথন" />
+    <meta property="og:description" content="নিরাপদ এবং তাৎক্ষণিক মেসেজিং সমৃদ্ধ ওয়ান-টু-ওয়ান রিয়েলটাইম লাইভ চ্যাটরুম।" />
+    <meta property="og:image" content="/icon-svg.svg" />
+
+    <!-- PWA meta tags -->
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Live Chat" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- Link Manifest & Favicon -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/icon-svg.svg" />
+    <link rel="apple-touch-icon" href="/icon-svg.svg" />
+  </head>
+  <body class="overscroll-y-none select-none">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((reg) => console.log('Service Worker registered successfully!', reg.scope))
+            .catch((err) => console.warn('Service Worker registration failed:', err));
+        });
+      }
+    </script>
+  </body>
+</html>
+
